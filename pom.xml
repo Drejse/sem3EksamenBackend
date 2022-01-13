@@ -7,7 +7,7 @@
     <version>1.0.1</version>
     <packaging>war</packaging>
 
-    <name>CA2TEMPLATE</name>
+    <name>sem3Eksamen</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

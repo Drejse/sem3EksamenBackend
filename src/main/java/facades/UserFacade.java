@@ -1,12 +1,19 @@
 package facades;
 
+
+
+import dtos.ConferenceDTO;
+import dtos.ConferencesDTO;
+import entities.Conference;
 import entities.User;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import security.errorhandling.AuthenticationException;
 
 /**
- * @author lam@cphbusiness.dk
+ * @author madr1402@hotmail.com
  */
 public class UserFacade {
 
@@ -43,4 +50,20 @@ public class UserFacade {
         return user;
     }
 
+    
+    public ConferencesDTO getAllConferences() throws Exception {
+        EntityManager em = emf.createEntityManager();
+        List<Conference> conferenceList;
+        TypedQuery<Conference> query = em.createQuery("SELECT c FROM Conference c",Conference.class);
+        conferenceList = query.getResultList();
+        return new ConferencesDTO(conferenceList);
+        
+    } 
+    
+    
+    
+    
+    
+    
+    
 }
