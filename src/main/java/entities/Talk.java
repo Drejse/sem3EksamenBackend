@@ -5,6 +5,7 @@
  */
 package entities;
 
+import dtos.TalkDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +66,19 @@ public class Talk implements Serializable {
         this.topic = topic;
         this.duration = duration;
         this.propList = propList;
-        this.speakerList = new ArrayList<>();
         this.conference = conference;
+        this.speakerList = new ArrayList<>();
     }
+    
+    
+    public Talk(TalkDTO tdto){
+        this.topic = tdto.getTopic();
+        this.duration = tdto.getDuration();
+        this.propList = tdto.getPropList();
+        this.conference = tdto.getConference();
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -93,14 +104,20 @@ public class Talk implements Serializable {
         this.duration = duration;
     }
 
- 
-    public List<Speaker> getSpeakerList() {
-        return speakerList;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setSpeakerList(List<Speaker> speakerList) {
         this.speakerList = speakerList;
     }
+
+    public List<Speaker> getSpeakerList() {
+        return speakerList;
+    }
+
+ 
+   
 
     public Conference getConference() {
         return conference;
@@ -117,6 +134,8 @@ public class Talk implements Serializable {
     public void setPropList(String propList) {
         this.propList = propList;
     }
+
+   
 
     
     

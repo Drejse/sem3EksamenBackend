@@ -35,7 +35,6 @@ public class ConferenceDTO {
     }
 
     public ConferenceDTO(Conference conference) {
-        this.id = conference.getId();
         this.conferenceName = conference.getConferenceName();
         this.location = conference.getLocation();
         this.capacity = conference.getCapacity();

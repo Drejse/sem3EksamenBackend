@@ -5,6 +5,7 @@
  */
 package entities;
 
+import dtos.ConferenceDTO;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -64,8 +65,14 @@ public class Conference implements Serializable{
         this.time = time;
         
     }
-
-   
+    
+    public Conference(ConferenceDTO cdto){
+        this.conferenceName = cdto.getConferenceName();
+        this.Location = cdto.getLocation();
+        this.capacity = cdto.getCapacity();
+        this.date = cdto.getDate();
+        this.time = cdto.getTime();
+    }
 
     public long getId() {
         return id;
