@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.ConferenceDTO;
+import dtos.SpeakerDTO;
 import dtos.TalkDTO;
 import dtos.TalkListDTO;
 import entities.Talk;
@@ -98,6 +99,14 @@ public class ApiResource {
        
     }
     
+     @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("speakers")
+    public Response getAllSpeakers() throws Exception{
+        return Response.ok(gson.toJson(UF.getAllSpeakers()),MediaType.APPLICATION_JSON).build();
+       
+    }
+    
     /*
     @GET
     @Path("{name}")
@@ -122,6 +131,14 @@ public class ApiResource {
     @Produces(MediaType.APPLICATION_JSON)
     public TalkDTO create(TalkDTO u) throws Exception {
         return UF.createTalk(u);
+    }
+    
+     @Path("createspeaker")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public SpeakerDTO createSpeaker(SpeakerDTO s) throws Exception {
+        return UF.createSpeaker(s);
     }
     
     

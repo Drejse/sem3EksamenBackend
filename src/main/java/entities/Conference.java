@@ -30,7 +30,7 @@ import javax.persistence.Table;
     
     @Entity
 @NamedQueries({
-   // @NamedQuery(name = "Conference.deleteAllRows", query = "DELETE from RentalArrangement")
+    @NamedQuery(name = "Conference.deleteAllRows", query = "DELETE from Conference")
 })
 @Table(name = "conference")
 

@@ -4,6 +4,7 @@ package facades;
 
 import dtos.ConferenceDTO;
 import dtos.ConferencesDTO;
+import dtos.SpeakerDTO;
 import dtos.SpeakersDTO;
 import dtos.TalkDTO;
 import dtos.TalkListDTO;
@@ -96,24 +97,6 @@ public class UserFacade {
     }*/
     
     
-    public TalkDTO deleteTalk(long id) throws Exception{
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-           Talk talk = em.find(Talk.class,id);
-            if(talk == null){
-                throw new Exception("could not delete, no id found");
-            }
-            em.remove(talk);
-            em.getTransaction().commit();
-            return new TalkDTO(talk);
-        }
-        finally{
-            em.close();
-        }
-    }
-    
-  
     
     
     public ConferenceDTO create(ConferenceDTO c) throws Exception {
@@ -143,16 +126,41 @@ public class UserFacade {
             em.close();
         }
         return new TalkDTO(talk);
-    
         
-            
-    
-    
-    
-    
-    
-    
      }
+     
+        public SpeakerDTO createSpeaker(SpeakerDTO s) throws Exception {
+        EntityManager em = emf.createEntityManager();
+        Speaker speaker = null;
+        try{
+            speaker = new Speaker(s);
+            em.getTransaction().begin();
+            em.persist(speaker);
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return new SpeakerDTO(speaker);
     
+       
+     }
+        
+        
+   public TalkDTO deleteTalk(long id) throws Exception{
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+           Talk talk = em.find(Talk.class,id);
+            if(talk == null){
+                throw new Exception("could not delete, no id found");
+            }
+            em.remove(talk);
+            em.getTransaction().commit();
+            return new TalkDTO(talk);
+        }
+        finally{
+            em.close();
+        }
+    } 
     
 }

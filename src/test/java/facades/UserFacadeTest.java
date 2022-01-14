@@ -1,4 +1,5 @@
 
+import dtos.ConferenceDTO;
 import dtos.ConferencesDTO;
 import entities.Conference;
 import entities.Role;
@@ -20,7 +21,7 @@ public class UserFacadeTest {
     
     User u1,u2,u3;
 
-    Conference c1,c2,c3;
+    Conference c1,c2,c3,c4;
     
     public UserFacadeTest() {}
     
@@ -40,7 +41,8 @@ public class UserFacadeTest {
             c3 = new Conference("Apple","Dubai",300,"12-01-22","12:00");
         try {
             em.getTransaction().begin();
-          
+            em.createNamedQuery("Conference.deleteAllRows").executeUpdate();
+
            
         
 
@@ -68,6 +70,17 @@ public class UserFacadeTest {
         assertEquals(expected,result.getAll().size());
         System.out.println(result.getAll());
     }
+    
+     @Test
+      void create() throws Exception{
+          System.out.println("Testing create Conference");
+          c4 = new Conference("Graffiti Maling","Hundested",25,"24-01-22","23:00");
+          ConferenceDTO cdto = new ConferenceDTO(c4);
+          ConferenceDTO expected = cdto;
+          ConferenceDTO actual = facade.create(cdto);
+          assertEquals(expected.getConferenceName(),actual.getConferenceName());
+        
+      }
     
     }
     

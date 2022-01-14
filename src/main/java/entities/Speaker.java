@@ -5,6 +5,7 @@
  */
 package entities;
 
+import dtos.SpeakerDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +77,11 @@ public class Speaker implements Serializable {
         this.talksList = new ArrayList<>();
     }
     
-
+    public Speaker(SpeakerDTO sdto){
+        this.name = sdto.getName();
+        this.profession = sdto.getProfession();
+        this.gender = sdto.getGender();
+    }
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
